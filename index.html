@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ömer Batuhan Coşkun | Portföy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- GENEL AYARLAR --- */
+        :root {
+            /* Renk Paleti */
+            --primary-color: #3498db; /* Daha parlak bir mavi (Koyu zemin için) */
+            --bg-color: #2C3E50;      /* Ana Lacivert Arka Plan */
+            --card-bg: #34495E;       /* Kartlar için biraz daha açık lacivert */
+            --text-color: #ECF0F1;    /* Beyazımsı yazı rengi */
+            --muted-text: #BDC3C7;    /* Gri açıklama yazıları */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color); /* Tüm sayfa lacivert */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 10px auto;
+        }
+
+        /* --- HEADER / NAVBAR --- */
+        header {
+            background-color: var(--bg-color); /* Navbar da lacivert */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-bg);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        #home {
+            height: 100vh;
+            /* Arka plana lacivert gradient eklendi, resim biraz karartıldı */
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.95)), url('https://images.unsplash.com/photo-1517077304055-6e89abbec402?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-color);
+            padding-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: var(--text-color);
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            color: var(--primary-color);
+        }
+
+        /* --- HAKKIMDA --- */
+        #about p {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--muted-text);
+        }
+
+        /* --- KARTLAR & KOLONLAR (Timeline & Projeler) --- */
+        .timeline-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card-bg); /* Kutu arka planı */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .column h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 10px;
+        }
+
+        .item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .item h4 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .item span {
+            font-size: 0.9rem;
+            color: var(--muted-text);
+            font-style: italic;
+        }
+
+        /* --- BECERİLER --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #1a252f; /* Barın boş kısmı daha koyu */
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0;
+            transition: width 1.5s ease-in-out;
+            border-radius: 5px;
+        }
+
+        /* --- PROJELER --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg); /* Kutu rengi */
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: #3e5871; /* Hover olunca hafif aç */
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            list-style: disc;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            color: var(--muted-text);
+        }
+        
+        .card li strong {
+            color: var(--text-color);
+        }
+
+        /* --- KURSLAR LISTESI --- */
+        .list-section ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--muted-text);
+        }
+
+        .list-section ul li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- İLETİŞİM & FOOTER --- */
+        #contact {
+            background-color: var(--bg-color);
+        }
+
+        footer {
+            background: #1a252f; /* Footer sayfa renginden bir tık daha koyu */
+            color: var(--muted-text);
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--card-bg);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            color: var(--text-color);
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2rem; }
+            nav { flex-direction: column; gap: 10px; }
+            .nav-links { gap: 15px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">ÖMER BATUHAN COŞKUN</div>
+            <div class="nav-links">
+                <a href="#about">Hakkımda</a>
+                <a href="#experience">Deneyim</a>
+                <a href="#skills">Beceriler</a>
+                <a href="#projects">Projeler</a>
+                <a href="#contact">İletişim</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1>Ömer Batuhan Coşkun</h1>
+            <h3>Elektrik Elektronik Mühendisliği Öğrencisi</h3>
+            <p>Elektronik Tasarım | Gömülü Sistemler | Web Geliştirme</p>
+            <br>
+            <div class="social-icons">
+                <a href="http://www.linkedin.com/in/ömer-batuhan-coşkun-b41175254" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:omerbatu34@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>Hakkımda</h2>
+        <p>
+            Elektronik devrelerin tasarımı, prototip üretimi ve testinde yer almak istiyorum. 
+            Bunun için gerekli bazı uygulamaları öğrenmeye başladım. Ayrıca bilgisayar programlama, 
+            kodlama ve web tasarımı alanlarında kendimi geliştirmeye devam ediyorum. 
+            Küçüklüğümden beri hayalini kurduğum elektrik alanına bölümümle adım attım. 
+            23 yaşında yeniliklere açık, öğrenmeye istekli ve alanını seven birisiyim. 
+            Her soruna çözüm odaklı yaklaşarak pratik çözümler üretecek, güçlü ve dinamik yapıda 
+            bir mühendis olmayı hedefliyorum.
+        </p>
+    </section>
+
+    <section id="experience">
+        <h2>Kariyer Yolu</h2>
+        <div class="timeline-container">
+            <div class="column">
+                <h3><i class="fas fa-graduation-cap"></i> Eğitim</h3>
+                <div class="item">
+                    <h4>Elektrik Elektronik Mühendisliği</h4>
+                    <span>Necmettin Erbakan Üniversitesi | 2022 - Şimdi</span>
+                </div>
+                <div class="item">
+                    <h4>Lise</h4>
+                    <span>Cumhuriyet Anadolu Lisesi | 2018 - 2021</span>
+                </div>
+            </div>
+            
+            <div class="column">
+                <h3><i class="fas fa-briefcase"></i> Deneyim</h3>
+                <div class="item">
+                    <h4>Stajyer</h4>
+                    <span>Memak Makine, Konya | 2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Beceriler</h2>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <div class="skill-item">
+                    <div class="skill-info"><span>AutoCAD</span><span>40%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="40%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Proteus</span><span>50%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="50%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>LTspice</span><span>70%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="70%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>C Programlama</span><span>40%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="40%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>HTML & CSS</span><span>40%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="40%"></div></div>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-item">
+                    <div class="skill-info"><span>PIC Mikrodenetleyici</span><span>50%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="50%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>STM32</span><span>40%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="40%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Altium Designer</span><span>10%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="10%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>MS Office</span><span>80%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="80%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projeler</h2>
+        <div class="project-grid">
+            <div class="card">
+                <h3>LCR Metre & Osilatör</h3>
+                <ul>
+                    <li><strong>STM32 Tabanlı Sinüs Sinyali:</strong> STM32 ile sinüs dalgası üretimi ve analog okuma.</li>
+                    <li><strong>Wien Köprüsü Osilatörü:</strong> Düşük distorsiyonlu, 100 kHz merkez frekanslı osilatör devresi tasarımı.</li>
+                    <li><strong>Amaç:</strong> Yüksek doğrulukta referans sinyali üreterek LCR metre geliştirmek.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>STM32 Geliştirme Kartı</h3>
+                <ul>
+                    <li>PWM ile LED ve Motor kontrolü.</li>
+                    <li>ADC (Analog Dijital Çevirici) uygulamaları.</li>
+                    <li>DHT11 Sensör kullanımı.</li>
+                    <li>Potansiyometre okuma.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Arduino Uno Uygulamaları</h3>
+                <ul>
+                    <li>LED Sensörü uygulamaları.</li>
+                    <li>Ses kontrollü ışık sistemi.</li>
+                    <li>Eğim sensörü kullanımı.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="list-section">
+        <div class="timeline-container">
+            <div class="column">
+                <h3>Sertifikalar & Kurslar</h3>
+                <ul>
+                    <li>AutoCAD ile 2D Tasarımlar | BTK Akademi</li>
+                    <li>React.js Eğitimi | Üretken Akademi (2024)</li>
+                    <li>C Programlama | BTK Akademi</li>
+                    <li>Algoritma ve Veri Yapılarına Giriş | BTK Akademi</li>
+                    <li>Birey ve Aileler İçin Afet Bilinci | AFAD</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Gönüllülük & Üyelikler</h3>
+                <ul>
+                    <li>T3 Vakfı Gönüllüsü (Teknofest 2024 Saha)</li>
+                    <li>IEEE NEU Üyesi (2022-Şimdi)</li>
+                    <li>Bilge Türk Topluluğu Üyesi</li>
+                    <li>Kapsül Teknoloji Platformu Gönüllüsü</li>
+                    <li>Tema Vakfı (Meşe palamudu toplama)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>İletişim</h2>
+        <div style="text-align: center;">
+            <p style="color: var(--muted-text)">Projelerinizde yer almak veya tanışmak için benimle iletişime geçebilirsiniz.</p>
+            <br>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> Konya, Türkiye</p>
+                <p><i class="fas fa-envelope"></i> omerbatu34@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Ömer Batuhan Coşkun. Tüm Hakları Saklıdır.</p>
+        <div class="social-icons" style="margin-top: 10px;">
+            <a href="http://www.linkedin.com/in/ömer-batuhan-coşkun-b41175254" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <br>
+        <small>Designer:FGA</small>
+    </footer>
+
+    <script>
+        // Progress Bar Animasyonu
+        const skillsSection = document.getElementById('skills');
+        const progressBars = document.querySelectorAll('.progress');
+
+        function showProgress() {
+            progressBars.forEach(progressBar => {
+                const value = progressBar.dataset.width;
+                progressBar.style.width = value;
+                progressBar.style.opacity = 1;
+            });
+        }
+
+        function hideProgress() {
+            progressBars.forEach(p => {
+                p.style.width = 0;
+                p.style.opacity = 0;
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const sectionPos = skillsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 1.3;
+
+            if (sectionPos < screenPos) {
+                showProgress();
+            } else {
+                hideProgress();
+            }
+        });
+    </script>
+</body>
+</html>
